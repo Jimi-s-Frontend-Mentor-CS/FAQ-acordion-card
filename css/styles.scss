@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap');
+
+$swMinDesktop: 476px;
+
+$clrTextPrimaryVeryDarkDesaturatedBlue: hsl(238, 29%, 16%);
+$clrTextPrimarySoftRed: hsl(14, 88%, 65%);
+$clrGradientSoftViolet: hsl(273, 75%, 66%);
+$clrGradientSoftBlue: hsl(240, 73%, 65%);
+$clrTextNeutralVeryDarkGrayishBlue: hsl(237, 12%, 33%);
+$clrTextNeutralDarkGrayishBlue: hsl(240, 6%, 50%);
+$clrDividerLightGrayishBlue: hsl(240, 5%, 91%);
+$clrWhite: hsl(0, 0%, 100%);
+
+$fontSizeCopy: 12px;
+$fontFamily: 'Kumbh Sans', sans-serif;
+
+*,
+*::before
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding-inline: 3em;
+    background: linear-gradient($clrGradientSoftViolet, $clrGradientSoftBlue);
+
+    .image-mobile {
+        display: flex;
+        flex-direction: column;
+
+        .mobile {
+            z-index: 1000;
+        }
+
+        .bg-mobile {
+            z-index: 100;
+            margin-top: -6em;
+        }
+    }
+
+    .content {
+        background: $clrWhite;
+        margin-top: -8.5em;
+        padding-top: 8.5em;
+        width: 100%;
+        border-radius: 2em;
+        border: none;
+        font-family: $fontFamily;
+        
+        color: $clrTextPrimaryVeryDarkDesaturatedBlue;
+        overflow: hidden;
+
+        .box {
+            display: none;
+        }
+
+        .image-desktop {
+            display: none;
+        }
+
+        .faq {
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            h1 {
+                font-size: 3rem;
+            }
+    
+            .questions {
+    
+                width: 85%;
+                font-size: $fontSizeCopy;
+    
+                details {
+                    display: flex;
+                    border-bottom: 1px solid $clrDividerLightGrayishBlue;
+                    padding-block: 1em;
+                    color: $clrTextNeutralVeryDarkGrayishBlue;
+                    
+                    span {
+                        padding-block: 1em;
+                    }
+    
+                    summary {
+                        cursor: pointer;
+                        list-style-type: none;
+    
+                        &::after {
+                            content: url("../img/icon-arrow-down.svg");
+                            float: right;
+                        }
+    
+                        &:hover,
+                        &:active {
+                            color: $clrTextPrimarySoftRed;
+                        }
+                    }
+    
+                    &[open] {
+                        summary {
+                            &::after {
+                                content: url("../img/icon-arrow-down.svg");
+                                transform: rotateX(180deg);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+}
+
+@media (min-width: $swMinDesktop) {
+
+    main {
+
+        padding-inline: 10em;
+
+        .image-mobile {
+            display: none;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 50% 50%;
+            padding-block: 8.5em;
+
+            .box {
+                display: block;
+                position: absolute;
+                left: 0;
+                margin-top: -4em;
+                align-self: center;
+                z-index: 9999;
+            }
+
+            .image-desktop {
+                display: flex;
+                flex-direction: column;
+                width: 36em;
+                height: 25em;
+                margin-left: -5em;
+
+                .desktop {
+                    z-index: 100;
+                }
+
+                .bg-desktop {
+                    z-index: 90;
+                    transform: scale(1);
+                    margin-top: -35em;
+                    margin-left: -10em;
+                }
+            }    
+
+            .faq {
+
+                padding-inline: 4em;
+                align-items: flex-start;
+
+                h1 {
+                    align-self: flex-start;
+                }
+    
+                .questions {
+                    padding-right: 3em;
+                }
+            }
+        }
+    }
+
+}
